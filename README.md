@@ -154,13 +154,24 @@ navigate to ```http://127.0.0.1:8100/tabs/user-page```
 
 
 
-### Executive Producer
+### Executive Producer 
+* Can view actors and movies
+
        Email: executiveproducer@example.com
        Password : executiveproducer@1
-#### Casting Assistant
+#### Casting Assistant  Can view actors and movies
+* Can view actors and movies
+* Add or delete an actor from the database
+* Modify actors or movies
+
        Email: castingassistant@example.com
        Password : castingassistant@1
 #### Casting Director 
+* Can view actors and movies
+* Add or delete an actor from the database
+* Modify actors or movies
+* Add or delete a movie from the databas
+
        Email: castingdirector@example.com
        Password : castingdirector@1
 
