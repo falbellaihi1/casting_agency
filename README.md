@@ -479,5 +479,5 @@ Faisal Albellaihi
 
 *Done With the use of Udacity README template*
 
-#Achnowledgements
+# Achnowledgements
 Team of Udacity
