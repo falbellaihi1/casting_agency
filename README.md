@@ -143,7 +143,7 @@ ionic serve
         
         
 
-##API usage requirements
+## API usage requirements
 
 To use the API, a user has to be authenticated, to do that
 While flask is running ``flask run ``&& started ionic ``ionic serve`` 
