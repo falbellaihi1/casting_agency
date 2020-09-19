@@ -281,6 +281,7 @@ GET '/movies'
 POST ```'/movies```
 - General
     - Requires authentication and permission of post:movies
+    - Date format must be '%m/%d/%Y'
     
     Send request using curl :
  ```
@@ -306,7 +307,8 @@ POST ```'/movies```
 PATCH ```'/movies/<int:id>```
 - General
     - Requires authentication and permission of patch:movies
-    - Request Arguments: movie id\
+    - Request Arguments: movie id
+    - Date format must be '%m/%d/%Y'
  
  
    Send request using curl :
