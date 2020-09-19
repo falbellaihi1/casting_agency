@@ -5,7 +5,7 @@ from flask_cors import CORS
 from models import setup_db, create_db, Actors, Movies
 from auth.auth import AuthError, requires_auth
 from datetime import datetime
-
+import http.client
 def create_app(test_config=None):  # create app
     app = Flask(__name__)
     setup_db(app)
@@ -24,7 +24,6 @@ def create_app(test_config=None):  # create app
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
 
-
     @app.route('/actors', methods=['GET'])
     @requires_auth('get:actors')
     def get_actors(payload):
@@ -37,8 +36,8 @@ def create_app(test_config=None):  # create app
                 "actors": [formatted_actors]
             })
         except Exception as e:
-            print(e)
-            abort(404)
+
+            abort(401)
 
     @app.route('/movies', methods=['GET'])
     @requires_auth('get:movies')
@@ -52,8 +51,8 @@ def create_app(test_config=None):  # create app
                 "movies": [formatted_movies]
             })
         except Exception as e:
-            print(e)
-            abort(404)
+
+            abort(401)
 
     @app.route('/actor/<int:id>', methods=['DELETE'])
     @requires_auth('delete:actors')
@@ -72,7 +71,7 @@ def create_app(test_config=None):  # create app
                     "deleted": id,
                 })
         except Exception as e:
-            print(e)
+
             abort(404)
 
 
@@ -93,7 +92,7 @@ def create_app(test_config=None):  # create app
                     "deleted": id,
                 })
         except Exception as e:
-            print(e)
+
             abort(404)
 
     @app.route('/actors', methods=['POST'])
@@ -111,7 +110,7 @@ def create_app(test_config=None):  # create app
             })
 
         except Exception as e:
-            print(e)
+
             abort(401)
 
     @app.route('/movies', methods=['POST'])
@@ -130,13 +129,13 @@ def create_app(test_config=None):  # create app
             })
 
         except Exception as e:
-            print(e)
+
             abort(401)
 
     @app.route('/actors/<int:id>', methods=['PATCH'])
     @requires_auth('patch:actors')
     def edit_actors(payload, id):
-        print('tyhis')
+
         try:
             actors = Actors.query.filter(Actors.id == id).one_or_none()
             if not actors:
@@ -151,8 +150,7 @@ def create_app(test_config=None):  # create app
                 "actors": [updated_actors.format()]
             })
         except Exception as e:
-            print(e)
-            abort(401)
+            abort(404)
 
     @app.route('/movies/<int:id>', methods=['PATCH'])
     @requires_auth('patch:movies')
@@ -171,8 +169,7 @@ def create_app(test_config=None):  # create app
                 "movies": [updated_movie.format()]
             })
         except Exception as e:
-            print(e)
-            abort(401)
+            abort(404)
 
 
 

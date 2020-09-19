@@ -35,7 +35,6 @@ def setup_db(app, database_path=database_path):
 
 def db_drop_and_create_all():
     db.drop_all()
-    print("d", db)
     db.create_all()
 def create_db():
     db.create_all()
