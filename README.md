@@ -234,7 +234,7 @@ Returns
 
 ```
 
-API DOCUMENTATION 
+## API DOCUMENTATION 
 
 Endpoints
 GET '/movies'
@@ -246,7 +246,7 @@ DELETE ...
 
 
 
-#Movies
+# Movies
 GET '/movies'
 -General
     - Fetches a dictionary of movies in which the keys are the ids and the value is the corresponding string of the category
@@ -360,7 +360,7 @@ General
 }
 ```
 
-#Actors
+# Actors
 
 POST '/Actor'
 - General
@@ -474,7 +474,7 @@ curl --location --request DELETE 'http://127.0.0.1:5000/actors/1' \
 }
 ```    
 
-##Authors
+## Authors
 Faisal Albellaihi
 
 *Done With the use of Udacity README template*
