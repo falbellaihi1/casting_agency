@@ -7,7 +7,7 @@ from sqlalchemy import *
 from flask_sqlalchemy import SQLAlchemy
 import json
 import os
-database_name = "fab_casting_agency"
+database_name = "casting_agency"
 DBUSER = os.environ.get('DBUSER')
 DBPASS = os.environ.get('DBPASS')
 #database_path = "postgresql://{}:{}@{}/{}".format(DBUSER, DBPASS, 'localhost:5432', database_name)
@@ -17,7 +17,7 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 db = SQLAlchemy()
 
 
-def setup_db(app):
+def setup_db(app, database_path=database_path):
     # con = psycopg2.connect("dbname=postgres user=postgres password=0000")
     # print(con)
     # con.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
@@ -35,6 +35,7 @@ def setup_db(app):
 
 def db_drop_and_create_all():
     db.drop_all()
+    print("d", db)
     db.create_all()
 def create_db():
     db.create_all()
