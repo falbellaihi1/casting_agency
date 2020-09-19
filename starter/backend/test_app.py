@@ -6,7 +6,7 @@ from auth.auth import requires_auth
 from models import setup_db, Actors, db, Movies
 
 
-def get_headers(role):
+def get_headers(role): # return headers based on role
     auth = ''
     if (role == 'ep'):
         executive_producer = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlNjV0szM2VDZkN4VHczMUo2aHFsWiJ9.eyJpc3MiOiJodHRwczovL2ZhbGJlbGxhaWhpMS51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWY2NWYyZWJhNTExZmUwMDZiNzgzYTFiIiwiYXVkIjoiY2FzdGluZ2FnZW5jeSIsImlhdCI6MTYwMDUyMzg3NSwiZXhwIjoxNjAwNjEwMjcyLCJhenAiOiJwRXZvczNvNVpHNk1UaVRTUWFUMTJoRE5PRXNHSklqUiIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9ycyIsImRlbGV0ZTptb3ZpZXMiLCJnZXQ6YWN0b3JzIiwiZ2V0Om1vdmllcyIsInBhdGNoOmFjdG9ycyIsInBhdGNoOm1vdmllcyIsInBvc3Q6YWN0b3JzIiwicG9zdDptb3ZpZXMiXX0.IuP8Ftzuy3cgT8SLSit9RIKz1nvK8TPguKIlqR5XeuB3Z5CkEv5AinDgXhAe5K7ZnjmsZbNnu7t_CyvQgfJjTT7i9pGzdLKzvJhAoSYOZK8Sp1DKLrfGYBi7P79vIsMG5YtjV5gu_wPcDqfO6DMbmSalHVdGrd2Nj_fjJVIqCifvzxsuFVQAlh8xHD9IqkXjnxRbGka2r1137FDbAMNaXEzPK1PCDKFfyTW1Coarl13jx6TRaqw-NDEiCEJRj5irPa2QT1D3vH3ebhRd41EhbJUbu5MDqPmznv5vj9KlGOAdFVI5M4bn209-8eH8b_sjze20X-egPLw3cUBFu-2PJQ'
@@ -56,10 +56,10 @@ class CastingAgencyTestCase(unittest.TestCase):
     def setUp(self):
         """Executed before each test prepares lists of roles that has permissions to do certain actions in the app"""
 
-        self.role_create_delete_actor = ['ep', 'cd']
-        self.role_modify_movie_actor = ['ep', 'cd']
-        self.role_view_actors_movies = ['ep', 'cd', 'ca']
-        self.role_delete_movie_401 = ['cd', 'ca']
+        self.role_create_delete_actor = ['ep', 'cd'] # set up roles that has permissions to create and delete actors
+        self.role_modify_movie_actor = ['ep', 'cd'] # set up roles that has permissions to modify movie and actor
+        self.role_view_actors_movies = ['ep', 'cd', 'ca'] # set up roles that has permissions to view actors and movie
+        self.role_delete_movie_401 = ['cd', 'ca'] # set up roles that does not have permissions to delete movie
 
     def tearDown(self):
         """Executed after each test"""
