@@ -48,7 +48,6 @@ class CastingAgencyTestCase(unittest.TestCase):
         setup_db(self.app, self.database_path)
 
         with self.app.app_context():
-            print('tst')
             db.init_app(self.app)
             # create all tables
             db.drop_all()
@@ -70,12 +69,11 @@ class CastingAgencyTestCase(unittest.TestCase):
 
         executive_producer and casting_director
         """
-
         for role in range(len(self.role_create_delete_actor)):
             header = (self.role_create_delete_actor[role])
             res = self.client().post('/actors', json=self.new_actor, headers=get_headers(header))
             data = json.loads(res.data)
-            # print(self.role_create_delete_actor[role] ,'who can create --?',data)
+            #print(self.role_create_delete_actor[role] ,'who can create --?',data)
             self.assertEqual(res.status_code, 200)
             self.assertEqual(data['success'], True)
             self.assertTrue(data['actors'])
@@ -152,7 +150,7 @@ class CastingAgencyTestCase(unittest.TestCase):
         """Testing delete movie method, this test should delete the movie from  db, if success it will return 200"""
         # print('delete')
 
-        res = self.client().delete('/movie/1', headers=get_headers('ep'))
+        res = self.client().delete('/movies/1', headers=get_headers('ep'))
         data = json.loads(res.data)
         # print('eo is able to delete movie ---->', data)
         movie = Movies.query.filter(Movies.id == 1).one_or_none()
@@ -167,7 +165,7 @@ class CastingAgencyTestCase(unittest.TestCase):
         actor_id = 1  #id to try get customer from db, and is set to 2 at the end of the for loop to get the next actor in db
         for role in range(len(self.role_create_delete_actor)):
             header = (self.role_create_delete_actor[role])
-            res = self.client().delete('/actor/' + str(actor_id), headers=get_headers(header))
+            res = self.client().delete('/actors/' + str(actor_id), headers=get_headers(header))
             data = json.loads(res.data)
             # print(self.role_create_delete_actor[role], ' who can deletee ---> ', data)
             actor = Actors.query.filter(Actors.id == actor_id).one_or_none()
@@ -182,7 +180,7 @@ class CastingAgencyTestCase(unittest.TestCase):
     def test_404_delete_movie(self):
         """Testing 404 delete actor method should return 404"""
         # print('delete')
-        res = self.client().delete('/movie/100000000', headers=get_headers('ep'))
+        res = self.client().delete('/movies/100000000', headers=get_headers('ep'))
         data = json.loads(res.data)
         # print(data)
         self.assertEqual(res.status_code, 404)
@@ -192,7 +190,7 @@ class CastingAgencyTestCase(unittest.TestCase):
     def test_404_delete_actor(self):
         """Testing delete actor method, this test should delete the actor from  db, if suceess it will return 200"""
         # print('delete')
-        res = self.client().delete('/actor/100000000', headers=get_headers('ep'))
+        res = self.client().delete('/actors/100000000', headers=get_headers('ep'))
         data = json.loads(res.data)
         # print(data)
         self.assertEqual(res.status_code, 404)
@@ -211,7 +209,6 @@ class CastingAgencyTestCase(unittest.TestCase):
         self.assertTrue(data['message'])
 
     def test_404_edit_movie(self):
-        # print('404 movie')
         """Testing 404 for editing a actor"""
         res = self.client().patch('/movies/100000000', json={"title": "title", "release_date": ""},
                                   headers=get_headers('ep'))
@@ -244,7 +241,7 @@ class CastingAgencyTestCase(unittest.TestCase):
     def test_401_edit_movie(self):
         # print('RBAC 401')
         """Testing RBAC for editing a movie"""
-        res = self.client().patch('/movies/1', json={"title": "new edited title", "release_date": "08/20/2020"},
+        res = self.client().patch('/movies/1', json={"title": "new edited title", "release_date": ""},
                                   headers=get_headers('ca'))
         data = json.loads(res.data)
         # print(data)
@@ -266,7 +263,7 @@ class CastingAgencyTestCase(unittest.TestCase):
     def test_401_delete_actor(self):
         """Testing RBAC for role ca to delete actor, it should return 401"""
         # print('RBAC 401 DELETE')
-        res = self.client().delete('/actor/1', headers=get_headers('ca'))
+        res = self.client().delete('/actors/1', headers=get_headers('ca'))
         data = json.loads(res.data)
         # print(data)
         # actor = Actors.query.filter(Actors.id == 1).one_or_none()

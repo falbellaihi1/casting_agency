@@ -6,14 +6,14 @@ from models import setup_db, create_db, Actors, Movies
 from auth.auth import AuthError, requires_auth
 from datetime import datetime
 import http.client
+
+
 def create_app(test_config=None):  # create app
     app = Flask(__name__)
     setup_db(app)
     # CORS(app)
-   # app.secret_key = os.environ.get('SECRET_KEY')
+    app.secret_key = os.environ.get('SECRET_KEY')
     CORS(app, resources={r"/api/*": {"origins": "*"}})
-
-
 
     create_db()
 
@@ -27,6 +27,7 @@ def create_app(test_config=None):  # create app
     @app.route('/actors', methods=['GET'])
     @requires_auth('get:actors')
     def get_actors(payload):
+        """ endpoint to retrieve all actors in the database, requiring permission get:actors. Returns formatted actors if successful"""
         try:
             get_actors = Actors.query.all()
             formatted_actors = [artist.format() for artist in get_actors]
@@ -42,6 +43,7 @@ def create_app(test_config=None):  # create app
     @app.route('/movies', methods=['GET'])
     @requires_auth('get:movies')
     def get_movies(payload):
+        """ endpoint to retrieve all movies in the database, requiring permission get:movies. Returns formatted movies if successful"""
         try:
             get_movies = Movies.query.all()
             formatted_movies = [movies.format() for movies in get_movies]
@@ -54,16 +56,15 @@ def create_app(test_config=None):  # create app
 
             abort(401)
 
-    @app.route('/actor/<int:id>', methods=['DELETE'])
+    @app.route('/actors/<int:id>', methods=['DELETE'])
     @requires_auth('delete:actors')
     def delete_actor(payload, id):
+        """ endpoint to delete an actors from the database, requiring permission delete:actors. Returns id of deleted
+        actor if successful """
         try:
-
             actor = Actors.query.filter(Actors.id == id).one_or_none()
-
             if not actor:
                 abort(404)
-
             else:
                 actor.delete()
                 return jsonify({
@@ -71,20 +72,17 @@ def create_app(test_config=None):  # create app
                     "deleted": id,
                 })
         except Exception as e:
-
             abort(404)
 
-
-    @app.route('/movie/<int:id>', methods=['DELETE'])
+    @app.route('/movies/<int:id>', methods=['DELETE'])
     @requires_auth('delete:movies')
     def delete_movie(payload, id):
+        """ endpoint to delete a movie from the database, requiring permission delete:movies. Returns id of deleted
+               movie if successful """
         try:
-
             movie = Movies.query.filter(Movies.id == id).one_or_none()
-
             if not movie:
                 abort(404)
-
             else:
                 movie.delete()
                 return jsonify({
@@ -92,14 +90,14 @@ def create_app(test_config=None):  # create app
                     "deleted": id,
                 })
         except Exception as e:
-
             abort(404)
 
     @app.route('/actors', methods=['POST'])
     @requires_auth('post:actors')
     def create_actor(playload):  # CUSTOMER ID NEEDS TO BE PASSED HERE,
         try:
-
+            if (request.json.get('name') == "" or request.json.get('age') == "" or request.json.get('gender') == ""):
+                abort(422)
             new_actor = Actors(name=request.json.get('name'), age=request.json.get('age'),
                                gender=request.json.get('gender'))
             Actors.insert(new_actor)
@@ -110,16 +108,18 @@ def create_app(test_config=None):  # create app
             })
 
         except Exception as e:
-
-            abort(401)
+            abort(422)
 
     @app.route('/movies', methods=['POST'])
     @requires_auth('post:movies')
-    def create_movies(playload):  # CUSTOMER ID NEEDS TO BE PASSED HERE,
+    def create_movies(playload):
+        """ endpoint to create a movie in the database, requiring permission post:movies. Returns the formatted
+               movie if successful """
         try:
+            if (request.json.get('title') == "" or request.json.get('release_date') == ""):
+                abort(422)
             json_str_date = request.json.get('release_date')
-            release_date = datetime.strptime(json_str_date,'%m/%d/%Y')
-            print(release_date)
+            release_date = datetime.strptime(json_str_date, '%m/%d/%Y')
             new_movie = Movies(title=request.json.get('title'), release_date=release_date)
             Actors.insert(new_movie)
             query_movies = Movies.query.filter(Movies.id == new_movie.id).one_or_none()
@@ -130,18 +130,26 @@ def create_app(test_config=None):  # create app
 
         except Exception as e:
 
-            abort(401)
+            abort(422)
 
     @app.route('/actors/<int:id>', methods=['PATCH'])
     @requires_auth('patch:actors')
     def edit_actors(payload, id):
-
+        """ endpoint to edit a actor in the database, requiring permission patch:actor. returns the formatted actor
+        if successful """
+        error = 404
         try:
+
             actors = Actors.query.filter(Actors.id == id).one_or_none()
             if not actors:
-                abort(404)
+                error = 404
+                abort(error)
+            if (request.json.get('name') == "" or request.json.get('age') == "" or request.json.get('gender') == ""):
+                error = 422
+                abort(error)
             actors.name = request.json.get('name')
             actors.email = request.json.get('email')
+            actors.gender = request.json.get('gender')
             Actors.update(actors)
             updated_actors = Actors.query.filter(Actors.id == id).one_or_none()
 
@@ -150,17 +158,26 @@ def create_app(test_config=None):  # create app
                 "actors": [updated_actors.format()]
             })
         except Exception as e:
-            abort(404)
+            abort(error)
 
     @app.route('/movies/<int:id>', methods=['PATCH'])
     @requires_auth('patch:movies')
     def edit_movies(payload, id):
+        """ endpoint to edit a movies in the database, requiring permission patch:movies. returns the formatted movies
+                if successful """
         try:
+            error = 404
             movie = Movies.query.filter(Movies.id == id).one_or_none()
             if not movie:
-                abort(404)
-            movie.name = request.json.get('title')
-            movie.email = request.json.get('release_date')
+                error = 404
+                abort(error)
+            if (request.json.get('title') == "" or request.json.get('release_date') == ""):
+                error = 422
+                abort(error)
+            json_str_date = request.json.get('release_date')
+            release_date = datetime.strptime(json_str_date, '%m/%d/%Y')
+            movie.title = request.json.get('title')
+            movie.release_date = release_date
             Movies.update(movie)
             updated_movie = Movies.query.filter(Movies.id == id).one_or_none()
 
@@ -169,22 +186,9 @@ def create_app(test_config=None):  # create app
                 "movies": [updated_movie.format()]
             })
         except Exception as e:
-            abort(404)
-
-
-
-
-
-
-
-
-
-
+            abort(error)
 
     ## Error Handling
-    '''
-    Example error handling for unprocessable entity
-    '''
 
     @app.errorhandler(422)
     def unprocessable(error):
@@ -276,7 +280,6 @@ def create_app(test_config=None):  # create app
         }), error.status_code
 
     return app
-
 
 
 # if __name__ == "__main__":
