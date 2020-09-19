@@ -150,21 +150,25 @@ While flask is running ``flask run ``&& started ionic ``ionic serve``
 
 navigate to ```http://127.0.0.1:8100/tabs/user-page``` 
 * click login and use the following information for each role you would like to test
-##Executive Producer
+
+
+
+
+### Executive Producer
        Email: executiveproducer@example.com
        Password : executiveproducer@1
-##Casting Assistant
+#### Casting Assistant
        Email: castingassistant@example.com
        Password : castingassistant@1
-##Casting Director 
+#### Casting Director 
        Email: castingdirector@example.com
        Password : castingdirector@1
+
      
 
 
 
-
-##HTTP STATUS CODE SUMMARY AND FORMAT
+### HTTP STATUS CODE SUMMARY AND FORMAT
 - 200 OK
 
     * Everything is working as it should 
