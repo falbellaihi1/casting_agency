@@ -1,9 +1,9 @@
 import os
 import unittest
 import json
-from app import create_app
-from auth.auth import requires_auth
-from models import setup_db, Actors, db, Movies
+from starter.backend.app import create_app
+from starter.backend.auth.auth import requires_auth
+from starter.backend.models import setup_db, Actors, db, Movies
 
 
 def get_headers(role): # return headers based on role

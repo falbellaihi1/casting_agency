@@ -2,8 +2,8 @@ import json
 import os
 from flask import Flask, request, jsonify, abort
 from flask_cors import CORS
-from backend.models import setup_db, create_db, Actors, Movies
-from backend.auth.auth import AuthError, requires_auth
+from starter.backend.models import setup_db, create_db, Actors, Movies
+from starter.backend.auth.auth import AuthError, requires_auth
 from datetime import datetime
 
 
