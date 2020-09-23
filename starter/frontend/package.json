@@ -4,7 +4,9 @@
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
   "scripts": {
-    "start": "node_modules/.bin/ng serve",
+    "ionic:build:prod": "ionic-app-scripts build -- --prod",
+    "start": "node server.js",
+    "heroku-postbuild": "npm run ionic:build:prod",
     "build": "node_modules/.bin/ng build",
     "test": "node_modules/.bin/ng test",
     "lint": "node_modules/.bin/ng lint",
@@ -40,7 +42,6 @@
     "zone.js": "~0.8.29"
   },
   "devDependencies": {
-
   },
   "description": "An Ionic project"
 }
