@@ -9,7 +9,7 @@ const routes: Routes = [
     children: [
       { path: 'user-page', loadChildren: '../user-page/user-page.module#UserPagePageModule' },
       {
-        path: 'user-page',
+        path: '#/user-page',
         redirectTo: '/tabs/user-page',
         pathMatch: 'full',
         loadChildren: '../user-page/user-page.module#UserPagePageModule'
