@@ -118,7 +118,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var routes = [
     {
-        path: 'tabs',
+        path: '',
         component: _tabs_page__WEBPACK_IMPORTED_MODULE_3__["TabsPage"],
         children: [
             { path: 'user-page', loadChildren: '../user-page/user-page.module#UserPagePageModule' },
