@@ -92,7 +92,7 @@ __webpack_require__.r(__webpack_exports__);
 var UserPagePage = /** @class */ (function () {
     function UserPagePage(auth) {
         this.auth = auth;
-        this.loginURL = auth.build_login_link('user-page');
+        this.loginURL = auth.build_login_link('#/user-page');
         this.logoutURL = auth.build_logout_link();
     }
     UserPagePage.prototype.ngOnInit = function () {
