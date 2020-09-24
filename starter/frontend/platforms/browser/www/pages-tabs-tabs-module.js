@@ -125,14 +125,16 @@ var routes = [
             {
                 path: 'user-page',
                 redirectTo: '/tabs/user-page',
-                pathMatch: 'full'
+                pathMatch: 'full',
+                loadChildren: '../user-page/user-page.module#UserPagePageModule'
             }
         ]
     },
     {
         path: '',
         redirectTo: '/tabs/user-page',
-        pathMatch: 'full'
+        pathMatch: 'full',
+        loadChildren: '../user-page/user-page.module#UserPagePageModule'
     }
 ];
 var TabsPageRoutingModule = /** @class */ (function () {

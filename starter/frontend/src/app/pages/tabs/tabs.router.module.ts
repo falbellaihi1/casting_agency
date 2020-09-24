@@ -11,14 +11,16 @@ const routes: Routes = [
       {
         path: 'user-page',
         redirectTo: '/tabs/user-page',
-        pathMatch: 'full'
+        pathMatch: 'full',
+        loadChildren: '../user-page/user-page.module#UserPagePageModule'
       }
     ]
   },
   {
     path: '',
     redirectTo: '/tabs/user-page',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    loadChildren: '../user-page/user-page.module#UserPagePageModule'
   }
 ];
 
