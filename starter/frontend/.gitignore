@@ -11,7 +11,11 @@ log.txt
 *.sublime-workspace
 .vscode/
 npm-debug.log*
-
+platforms/*
+!platforms/browser/
+!platforms/browser/www
+!platforms/browser/www/plugins
+/plugins/
 .idea/
 .ionic/
 .sourcemaps/
@@ -22,10 +26,8 @@ coverage/
 node_modules/
 tmp/
 temp/
-platforms/
-plugins/
-plugins/android.json
-plugins/ios.json
+/www/
+
 $RECYCLE.BIN/
 
 .DS_Store
