@@ -129,6 +129,11 @@ var routes = [
             }
         ]
     },
+    {
+        path: '',
+        redirectTo: '/tabs/user-page',
+        pathMatch: 'full'
+    }
 ];
 var TabsPageRoutingModule = /** @class */ (function () {
     function TabsPageRoutingModule() {
