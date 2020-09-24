@@ -92,10 +92,11 @@ __webpack_require__.r(__webpack_exports__);
 var UserPagePage = /** @class */ (function () {
     function UserPagePage(auth) {
         this.auth = auth;
-        this.loginURL = auth.build_login_link('#/user-page');
+        this.loginURL = auth.build_login_link('/user-page');
         this.logoutURL = auth.build_logout_link();
     }
     UserPagePage.prototype.ngOnInit = function () {
+        console.log(this.loginURL);
     };
     UserPagePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

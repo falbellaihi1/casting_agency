@@ -121,9 +121,9 @@ var routes = [
         path: '',
         component: _tabs_page__WEBPACK_IMPORTED_MODULE_3__["TabsPage"],
         children: [
-            { path: '#/user-page', loadChildren: '../user-page/user-page.module#UserPagePageModule' },
+            { path: 'user-page', loadChildren: '../user-page/user-page.module#UserPagePageModule' },
             {
-                path: '#/user-page',
+                path: 'user-page',
                 redirectTo: '/tabs/user-page',
                 pathMatch: 'full',
                 loadChildren: '../user-page/user-page.module#UserPagePageModule'

@@ -11,12 +11,13 @@ export class UserPagePage implements OnInit {
   logoutURL: string;
 
   constructor(public auth: AuthService) {
-    this.loginURL = auth.build_login_link('#/user-page');
+    this.loginURL = auth.build_login_link('/user-page');
     this.logoutURL = auth.build_logout_link();
 
   }
 
   ngOnInit() {
+    console.log(this.loginURL);
   }
 
 }
