@@ -7,7 +7,7 @@ const routes: Routes = [
     path: '',
     component: TabsPage,
     children: [
-      { path: 'user-page', loadChildren: '../user-page/user-page.module#UserPagePageModule' },
+      { path: '#/user-page', loadChildren: '../user-page/user-page.module#UserPagePageModule' },
       {
         path: '#/user-page',
         redirectTo: '/tabs/user-page',
