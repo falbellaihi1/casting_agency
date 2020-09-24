@@ -123,17 +123,12 @@ var routes = [
         children: [
             { path: 'user-page', loadChildren: '../user-page/user-page.module#UserPagePageModule' },
             {
-                path: '',
+                path: 'user-page',
                 redirectTo: '/tabs/user-page',
                 pathMatch: 'full'
             }
         ]
     },
-    {
-        path: '',
-        redirectTo: '/tabs/user-page',
-        pathMatch: 'full'
-    }
 ];
 var TabsPageRoutingModule = /** @class */ (function () {
     function TabsPageRoutingModule() {
