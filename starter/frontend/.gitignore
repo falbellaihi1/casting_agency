@@ -12,9 +12,9 @@ log.txt
 .vscode/
 npm-debug.log*
 platforms/*
-!platforms/browser/
-!platforms/browser/www
-!platforms/browser/www/plugins
+#!platforms/browser/
+#!platforms/browser/www
+#!platforms/browser/www/plugins
 /plugins/
 .idea/
 .ionic/
@@ -27,6 +27,7 @@ node_modules/
 tmp/
 temp/
 /www/
+resources/
 
 $RECYCLE.BIN/
 

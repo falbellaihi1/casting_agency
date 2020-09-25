@@ -7,8 +7,8 @@ export const environment = {
   apiServerUrl: 'https://casting-agency-capstone-udaciy.herokuapp.com', // the running FLASK api server url
   auth0: {
     url: 'falbellaihi1.us', // the auth0 domain prefix
-    audience: 'castingagency', // the audience set for the auth0 app
-    clientId: 'pEvos3o5ZG6MTiTSQaT12hDNOEsGJIjR', // the client id generated for the auth0 app
+    audience: 'castingagency', // the audience set for the auth0 src
+    clientId: 'pEvos3o5ZG6MTiTSQaT12hDNOEsGJIjR', // the client id generated for the auth0 src
     callbackURL: 'https://casting-agency-falbellaihi.herokuapp.com', // the base url of the running ionic application.
   }
 };

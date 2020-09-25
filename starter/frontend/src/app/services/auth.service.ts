@@ -41,7 +41,7 @@ export class AuthService {
     return link;
   }
 
-  // invoked in app.component on load
+  // invoked in src.component on load
   check_token_fragment() {
     // parse the fragment
     const fragment = window.location.hash.substr(1).split('&')[0].split('=');
