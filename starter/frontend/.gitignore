@@ -27,7 +27,7 @@ node_modules/
 tmp/
 temp/
 /www/
-resources/
+#resources/
 
 $RECYCLE.BIN/
 
