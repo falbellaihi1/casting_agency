@@ -1,9 +1,9 @@
 var connect = require('connect');
 var serveStatic = require('serve-static');
-app = connect();
+appConnect = connect();
 
 
-app.use(serveStatic("platforms/browser/www"));
+appConnect.use(serveStatic("platforms/browser/www"));
 
 // CORS (Cross-Origin Resource Sharing) headers to support Cross-site HTTP requests
 // app.all('*', function(req, res, next) {
@@ -14,7 +14,7 @@ app.use(serveStatic("platforms/browser/www"));
 
 // API Routes
 // app.get('/blah', routeHandler);
-app.listen(process.env.PORT || 5000);
+appConnect.listen(process.env.PORT || 5000);
 // app.set('port', process.env.PORT || 5000);
 //
 // app.listen(app.get('port'), function () {

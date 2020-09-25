@@ -32,5 +32,6 @@ import { from } from 'rxjs';
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
-})
+
+} )
 export class AppModule {}

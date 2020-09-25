@@ -9,6 +9,6 @@ export const environment = {
     url: 'falbellaihi1.us', // the auth0 domain prefix
     audience: 'castingagency', // the audience set for the auth0 app
     clientId: 'pEvos3o5ZG6MTiTSQaT12hDNOEsGJIjR', // the client id generated for the auth0 app
-    callbackURL: 'https://casting-agency-falbellaihi.herokuapp.com/', // the base url of the running ionic application.
+    callbackURL: 'http://127.0.0.1:5000', // the base url of the running ionic application.
   }
 };

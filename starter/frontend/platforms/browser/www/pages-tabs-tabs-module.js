@@ -118,23 +118,19 @@ __webpack_require__.r(__webpack_exports__);
 
 var routes = [
     {
-        path: '',
+        path: 'tabs',
         component: _tabs_page__WEBPACK_IMPORTED_MODULE_3__["TabsPage"],
         children: [
             { path: 'user-page', loadChildren: '../user-page/user-page.module#UserPagePageModule' },
             {
-                path: 'user-page',
+                path: '',
                 redirectTo: '/tabs/user-page',
-                pathMatch: 'full',
-                loadChildren: '../user-page/user-page.module#UserPagePageModule'
             }
         ]
     },
     {
         path: '',
         redirectTo: '/tabs/user-page',
-        pathMatch: 'full',
-        loadChildren: '../user-page/user-page.module#UserPagePageModule'
     }
 ];
 var TabsPageRoutingModule = /** @class */ (function () {
