@@ -882,7 +882,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var routes = [
     { path: '', loadChildren: './pages/tabs/tabs.module#TabsPageModule' },
-    { path: '**', loadChildren: './pages/tabs/tabs.module#TabsPageModule' },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -1155,7 +1154,7 @@ var environment = {
         url: 'falbellaihi1.us',
         audience: 'castingagency',
         clientId: 'pEvos3o5ZG6MTiTSQaT12hDNOEsGJIjR',
-        callbackURL: 'http://127.0.0.1:5000',
+        callbackURL: 'http://127.0.0.1:8000',
     }
 };
 

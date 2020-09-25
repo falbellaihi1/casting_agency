@@ -14,7 +14,7 @@ appConnect.use(serveStatic("platforms/browser/www"));
 
 // API Routes
 // app.get('/blah', routeHandler);
-appConnect.listen(process.env.PORT || 5000);
+appConnect.listen(process.env.PORT || 8000);
 // app.set('port', process.env.PORT || 5000);
 //
 // app.listen(app.get('port'), function () {
