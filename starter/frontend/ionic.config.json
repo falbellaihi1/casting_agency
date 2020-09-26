@@ -1,7 +1,0 @@
-{
-  "name": "castingagency",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "angular"
-}

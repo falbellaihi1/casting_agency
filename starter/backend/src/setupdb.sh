@@ -1,6 +1,0 @@
-export PGUSER=postgres
-export PGPASSWORD=0000
-dropdb casting_agency
-createdb casting_agency
-dropdb casting_agency_test
-createdb casting_agency_test
