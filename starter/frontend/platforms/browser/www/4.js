@@ -16,3 +16,4 @@ function startTapClick(t,e){var n,i,o,a,r=10*-MOUSE_WAIT,s=0,c=e.getBoolean("ani
 /***/ })
 
 }]);
+//# sourceMappingURL=4.js.map

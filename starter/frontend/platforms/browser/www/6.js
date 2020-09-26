@@ -16,3 +16,4 @@ function createSwipeBackGesture(e,t,r,a,n,i){var o=e.ownerDocument.defaultView;r
 /***/ })
 
 }]);
+//# sourceMappingURL=6.js.map

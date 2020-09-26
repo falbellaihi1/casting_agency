@@ -1,5 +1,7 @@
+import os
 import unittest
 import json
+
 
 from src.app import create_app
 from src.models import setup_db, db, Movies, Actors
@@ -8,13 +10,13 @@ from src.models import setup_db, db, Movies, Actors
 def get_headers(role):  # return headers based on role
     auth = ''
     if (role == 'ep'):
-        executive_producer = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlNjV0szM2VDZkN4VHczMUo2aHFsWiJ9.eyJpc3MiOiJodHRwczovL2ZhbGJlbGxhaWhpMS51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWY2NWYyZWJhNTExZmUwMDZiNzgzYTFiIiwiYXVkIjoiY2FzdGluZ2FnZW5jeSIsImlhdCI6MTYwMTA0NTIwNSwiZXhwIjoxNjAxMTMxNjA1LCJhenAiOiJwRXZvczNvNVpHNk1UaVRTUWFUMTJoRE5PRXNHSklqUiIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9ycyIsImRlbGV0ZTptb3ZpZXMiLCJnZXQ6YWN0b3JzIiwiZ2V0Om1vdmllcyIsInBhdGNoOmFjdG9ycyIsInBhdGNoOm1vdmllcyIsInBvc3Q6YWN0b3JzIiwicG9zdDptb3ZpZXMiXX0.rNPxuaV9jzaFuCgq7pAbkICWQp_e9A9Qy-KfmAb74xRje20bTGRL-MpIbW8a-6dpUMcSfRt87zRj9L-WyMHv15OfiLiOcN70mMFwpu22z-i39nmViVMKiQsu6G4xu9Kjvz5w2xvaxgXXJHcQAIl0FFMm5DsUMjoV7tAubNUv0bg0X9HjHuFdYL9rgHChkb1aZufIgR82o6eRkqH_EcqV3pwu2ihe5MoEoCeTc5gmXiiVijVUq-Z35T7kHszejllB17-386vtCIKUWhSRhG-J7VwGrwVbFfKm4wP3Ph8sAyCGXpukwFlfrrS62Jh2rgBFyVUpcY_a21wSwJ6y_LH49g'
+        executive_producer = os.environ.get('executive_producer')
         auth = executive_producer
     if (role == 'ca'):
-        casting_assistant = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlNjV0szM2VDZkN4VHczMUo2aHFsWiJ9.eyJpc3MiOiJodHRwczovL2ZhbGJlbGxhaWhpMS51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWY2NWYyOWEyNWRkMTQwMDc4ZmY0MzFiIiwiYXVkIjoiY2FzdGluZ2FnZW5jeSIsImlhdCI6MTYwMTA0NTgwOSwiZXhwIjoxNjAxMTMyMjA5LCJhenAiOiJwRXZvczNvNVpHNk1UaVRTUWFUMTJoRE5PRXNHSklqUiIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiXX0.jT4Me3t0HgO2pHwTAWfBfOT79aenDdBIIdBMSjLvBr8T7zSRoIK5xgXPl2SL5N6MatEYurrX9uo0O4TzLDm4W1UgkIse72XT6fz_tMIAv77fht7T5DDurAVqFxuyfxsKUdZ_ULcv7Rk32b_t4INPQp9-dK5reJzBmwmMN3_-l5YimaWwaeeoCCfMOLU-eQrZOhG7fxKn8CdJSwT3LSFes5cbJ2hCcbaaP3BfcvosHCML4Q1xwJSwq2JKhWWGFBB3L_v0yMosVd_0PWeVynCCAZrXm3fWy6HyLeg6y2Ho2WbBgDTGuR1d4FCV4bkqtJ2JQu9s6buJ__OCYfj8Peu8xw'
+        casting_assistant = os.environ.get('casting_assistant')
         auth = casting_assistant
     if (role == 'cd'):
-        casting_director = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlNjV0szM2VDZkN4VHczMUo2aHFsWiJ9.eyJpc3MiOiJodHRwczovL2ZhbGJlbGxhaWhpMS51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWY2NWYyNDM4MTU1MWYwMDZlNDE2OGJiIiwiYXVkIjoiY2FzdGluZ2FnZW5jeSIsImlhdCI6MTYwMTA0NTg0NywiZXhwIjoxNjAxMTMyMjQ3LCJhenAiOiJwRXZvczNvNVpHNk1UaVRTUWFUMTJoRE5PRXNHSklqUiIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9ycyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiXX0.FVTS8wak711VwbUQUHdIau02eRUxXf_u4aDGEGNGO50gLsR3VQ9NawBw8E0TI4AKjPJC1tyT72zhjGP4sCv7kMbzJSxFF7p--g8DtsWbvtCYWKKAqpcG65IEmx_L_bCMtzyA1LSoBvk_jChKyt-QPfQAA3suv-hLcjkiNpmpveosSG9PZ6XTNn8JAAe1b2vXwOGzza4FgxrIxMS_oBT52TAhYmlp6uHTwjUO0zck7xg3jN78xv_9ge4nCJ39YAymxhOb1kucIaaZzGRU91OXNDGs3VuefrXjrs5JJDQzuPlYR_3efA5zA0CWrP5JmlywAJiTebB3UtiJ9aBk7wNocQ'
+        casting_director = os.environ.get('casting_director')
         auth = casting_director
 
     headers = {'authorization': 'Bearer {}'.format(auth)}

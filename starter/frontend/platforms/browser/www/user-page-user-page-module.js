@@ -2,7 +2,7 @@
 
 /***/ "./src/app/pages/user-page/user-page.module.ts":
 /*!*****************************************************!*\
-  !*** ./src/src/pages/user-page/user-page.module.ts ***!
+  !*** ./src/app/pages/user-page/user-page.module.ts ***!
   \*****************************************************/
 /*! exports provided: UserPagePageModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -53,7 +53,7 @@ var UserPagePageModule = /** @class */ (function () {
 
 /***/ "./src/app/pages/user-page/user-page.page.html":
 /*!*****************************************************!*\
-  !*** ./src/src/pages/user-page/user-page.page.html ***!
+  !*** ./src/app/pages/user-page/user-page.page.html ***!
   \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -64,7 +64,7 @@ module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>user-page</i
 
 /***/ "./src/app/pages/user-page/user-page.page.scss":
 /*!*****************************************************!*\
-  !*** ./src/src/pages/user-page/user-page.page.scss ***!
+  !*** ./src/app/pages/user-page/user-page.page.scss ***!
   \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -75,7 +75,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ "./src/app/pages/user-page/user-page.page.ts":
 /*!***************************************************!*\
-  !*** ./src/src/pages/user-page/user-page.page.ts ***!
+  !*** ./src/app/pages/user-page/user-page.page.ts ***!
   \***************************************************/
 /*! exports provided: UserPagePage */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -100,7 +100,7 @@ var UserPagePage = /** @class */ (function () {
     };
     UserPagePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'src-user-page',
+            selector: 'app-user-page',
             template: __webpack_require__(/*! ./user-page.page.html */ "./src/app/pages/user-page/user-page.page.html"),
             styles: [__webpack_require__(/*! ./user-page.page.scss */ "./src/app/pages/user-page/user-page.page.scss")]
         }),

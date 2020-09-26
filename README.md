@@ -31,8 +31,24 @@ This will install all of the required packages within the `requirements.txt` fil
 
 #### Environment Variables
 
-Once ``requirements.txt`` installed all required dependencies source all environment variables by running the following
+Once ``requirements.txt`` installed all required dependencies, source all environment variables by running the following
+## Database Setup
+With Postgres running and connected, create two databases by running  
 
+*casting agency db*
+```bash
+dropdb casting_agency
+createdb casting_agency
+
+
+
+
+```
+or use
+```
+bash setupdb.sh
+``` 
+making sure the pguser is set as well as the password 
 ``` 
 source setup.sh
 ```
@@ -46,22 +62,7 @@ source setup.sh
 
 - [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/#) is the extension we'll use to handle cross origin requests from our frontend server. 
 
-
-## Database Setup
-With Postgres running and connected, create two databases by running  
-
-*casting agency db*
-```bash
-dropdb casting_agency
-createdb casting_agency
-
-or use setupdb.sh making sure the pguser is set as well as the password 
-
-
-```
-
 ## Running the server
-
 From within the `backend` directory first ensure you are working using your created virtual environment.
 
 To run the server, execute:
@@ -89,13 +90,13 @@ Setting the `FLASK_APP` variable to `app.py` directs flask to use the `app.py` f
 
 
 ## Testing
-To run the tests, run setupdb.sh or run the followingh:
+To run the tests, run the following or if you have ran setupdb.sh then skip this and run the test:
 ```
 
 dropdb casting_agency_test
 createdb casting_agency_test
 ```
-Then run test app
+Then run test app making sure the auth headers are updated and not expired or it will fail
 
 ````
 python test_app.py
@@ -120,28 +121,84 @@ npm install
 ### Configure Enviornment Variables
 Ionic uses a configuration file to manage environment variables. These variables ship with the transpiled software and should not include secrets.
 
-- Open `./src/environments/environments.ts` and ensure each variable reflects the system you stood up for the backend.
+- Open `./src/environments/environments.ts` and ensure each variable reflects the system you stood up for the backend. 
+The environment.ts file is only for development environment when building for production the file that will be used is ```environment-prod.ts```
 
-- navigate to project directory and to starter>frontend using CMD/BASH
+- navigate to project directory and to starter>frontend using CMD/BASH to start the server and run
 
 ```bash
-ionic serve
+npm start
 ```
+
+- If any changes are made to the frontend, the frontend needs to be built by using the following command 
+
+```bash
+ionic cordova build browser
+```
+This command will create necessary files for browser
+
+[Checkout stackoverflow answer to build Ionic for browser (PWA)](https://stackoverflow.com/questions/43701033/ionic-pwa-deploy)
+
+
 *Note do not use ionic serve in production, instead build ionic* [Checkout the Ionic docs to learn more](https://ionicframework.com/docs/cli/commands/build)
 
 
 
-
 -BASE URL 
-    - Backend URL
+    - Backend Local URL
     
         
         http://127.0.0.1:5000/
-   -frontend URL
+   -frontend Local URL
    
-        ```http://127.0.0.1:8100/```
+        ```http://127.0.0.1:8000/```
         
-        
+
+## Deploy to heroku
+
+To deploy the application to heroku the frontend and backend needs to be deployed separably   
+
+- [Download heroku Cli](https://devcenter.heroku.com/articles/heroku-cli)
+### backend
+- Create new app in heroku for backend
+
+- Once installed, in your terminal type ```heroku login```
+
+- Once you are logged in, in heroku page, navigate to settings and copy Heroku git url
+
+- Add heroku git url to remotes
+
+- Heroku relays on procfile and requirements.txt to build the application, in order for the build to succeed those files needs to be in the main directory 
+- Two options here, either  create new repo inside backend file or push as subtree
+- For this case we will be using the latter   [following this link](https://github.com/apenwarr/git-subtree/blob/master/git-subtree.txt)
+    * Git subtree
+    * In the git directory ``` git add <dist>```
+    * ``` git commit <dist> -m 'making it better' ```
+    * ``` git subtree push --prefix=<dist> <remote> master```
+    * Now your application should be pushed and heroku will be building it and installing requirements
+- Create postgres resource in heroku by navigating to resources and typing in the search bar of  'add-ones' 'Heroku Postgres' and click provision
+   * Click on heroku postgres to access the dashboard and navigate to settings to get the database credentials
+   * Click view Credentials and create environment variable for ``` DBURI```  and copy the URI and past it as value
+* Note be sure to set up the write 'database_path' in models for the right environment variable
+
+### frontend
+
+For heroku to deploy ionic frontend it needs to have server.js and to have package.json scripts as follows
+
+```package.json scripts
+  "scripts": {
+    "start": "node server.js",
+    "build": "node_modules/.bin/ng build",
+    "test": "node_modules/.bin/ng test",
+    "lint": "node_modules/.bin/ng lint",
+    "e2e": "node_modules/.bin/ng e2e"
+  }
+
+```
+* then same as above create new app in heroku and deploy it as subtree by following same git commands with using the new frontend app remote 
+* Since the frontend is different from local, environment.ts callbackurl now is different change it with your app link removing the '/' at the end of the link
+* build the app again ```ionic cordova build browser ``` making sure ignore file is not ignoring platform [check](https://stackoverflow.com/questions/43701033/ionic-pwa-deploy) follow the .gitignore section of accepted answer 
+* push it to heroku frontend remote
 
 ## API usage requirements
 
@@ -154,10 +211,12 @@ navigate to ```http://127.0.0.1:8100/tabs/user-page```
 
 
 
-### Executive Producer 
+#### Executive Producer 
 * Can view actors and movies
 * Add or delete an actor from the database
 * Modify actors or movies
+* Add or delete a movie from the database
+
 
        Email: executiveproducer@example.com
        Password : executiveproducer@1
@@ -166,11 +225,11 @@ navigate to ```http://127.0.0.1:8100/tabs/user-page```
 
        Email: castingassistant@example.com
        Password : castingassistant@1
-#### Casting Director 
+
+#### Casting Director
 * Can view actors and movies
 * Add or delete an actor from the database
 * Modify actors or movies
-* Add or delete a movie from the databas
 
        Email: castingdirector@example.com
        Password : castingdirector@1
@@ -259,7 +318,7 @@ DELETE ...
 
 # Movies
 GET '/movies'
--General
+* General
     - Fetches a dictionary of movies in which the keys are the ids and the value is the corresponding string of the category
     - Request Arguments: Authentication Bearer header 
 
@@ -328,7 +387,7 @@ PATCH ```'/movies/<int:id>```
     
     
    
-```   curl --location --request PATCH 'http://127.0.0.1:5000/movies/1' 
+```   curl --location --request PATCH 'http://example.com/movies/1' 
    --header 'Authorization: Bearer YOUR_TOKEN
   --header 'Content-Type: application/json' \
   --data-raw '{"title":"edited movie", "release_date":"08/08/2020"}'
@@ -353,18 +412,21 @@ PATCH ```'/movies/<int:id>```
 
 
 DELETE '/movie/<int:id>'
-General
+* General
     - Requires authentication and permission of delete:movies
-    - Request Arguments: movie id\
+    - Request Arguments: movie id
+    
     
     
     
    Send request using curl :
-    
-            curl --location --request DELETE 'http://127.0.0.1:5000/movies/1' \
-            --header 'Authorization: Bearer YOUR_TOKEN
-   - Returns:. 
+```    
+curl --location --request DELETE 'http://example.com/movies/1' \
+--header 'Authorization: Bearer YOUR_TOKEN
 ```
+- Returns:    
+```
+
 {
     "deleted": 1,
     "success": true
@@ -377,10 +439,11 @@ POST '/Actor'
 - General
     - Requires authentication and permission of post:actor
     - Request Arguments: permissions
+    - Data json
 
 Send request using curl :
  ```
-    curl --location --request POST 'http://127.0.0.1:5000/actors' \
+    curl --location --request POST 'http://example.com/actors' \
     --header 'Authorization: Bearer YOUR_TOKEN' \
     --header 'Content-Type: application/json' \
     --data-raw '{"name":"new actor", "age":30, "gender":"male"}'
@@ -408,7 +471,7 @@ GET '/Actor'
 
 Send request using curl :
  ```
- curl --location --request GET 'http://127.0.0.1:5000/actors' 
+ curl --location --request GET 'http://example.com/actors' 
 --header 'Authorization: Bearer YOUR_TOKEN' '
 ``` 
 
@@ -442,7 +505,7 @@ PATCH '/Actor/<int:id>'
 
 Send request using curl :
  ```
-curl --location --request PATCH 'http://127.0.0.1:5000/actors/1' \
+curl --location --request PATCH 'http://example.com/actors/1' \
 --header 'Authorization: Bearer YOUR_TOKEN' \
 --header 'Content-Type: application/json' \
 --data-raw '{"name":"I edited this", "age":23, "gender":"female"}'
@@ -471,7 +534,7 @@ DELETE '/Actor/<int:id>'
 
 Send request using curl :
  ```
-curl --location --request DELETE 'http://127.0.0.1:5000/actors/1' \
+curl --location --request DELETE 'http://example.com/actors/1' \
 --header 'Authorization: Bearer YOUR_TOKEN' 
 
 ``` 

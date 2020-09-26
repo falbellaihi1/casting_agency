@@ -2,7 +2,7 @@
 
 /***/ "./src/app/pages/tabs/tabs.module.ts":
 /*!*******************************************!*\
-  !*** ./src/src/pages/tabs/tabs.module.ts ***!
+  !*** ./src/app/pages/tabs/tabs.module.ts ***!
   \*******************************************/
 /*! exports provided: TabsPageModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -47,7 +47,7 @@ var TabsPageModule = /** @class */ (function () {
 
 /***/ "./src/app/pages/tabs/tabs.page.html":
 /*!*******************************************!*\
-  !*** ./src/src/pages/tabs/tabs.page.html ***!
+  !*** ./src/app/pages/tabs/tabs.page.html ***!
   \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -58,7 +58,7 @@ module.exports = "<ion-tabs>\r\n\r\n  <ion-tab-bar slot=\"bottom\">\r\n    <ion-
 
 /***/ "./src/app/pages/tabs/tabs.page.scss":
 /*!*******************************************!*\
-  !*** ./src/src/pages/tabs/tabs.page.scss ***!
+  !*** ./src/app/pages/tabs/tabs.page.scss ***!
   \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -69,7 +69,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ "./src/app/pages/tabs/tabs.page.ts":
 /*!*****************************************!*\
-  !*** ./src/src/pages/tabs/tabs.page.ts ***!
+  !*** ./src/app/pages/tabs/tabs.page.ts ***!
   \*****************************************/
 /*! exports provided: TabsPage */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -86,7 +86,7 @@ var TabsPage = /** @class */ (function () {
     }
     TabsPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'src-tabs',
+            selector: 'app-tabs',
             template: __webpack_require__(/*! ./tabs.page.html */ "./src/app/pages/tabs/tabs.page.html"),
             styles: [__webpack_require__(/*! ./tabs.page.scss */ "./src/app/pages/tabs/tabs.page.scss")]
         })
@@ -100,7 +100,7 @@ var TabsPage = /** @class */ (function () {
 
 /***/ "./src/app/pages/tabs/tabs.router.module.ts":
 /*!**************************************************!*\
-  !*** ./src/src/pages/tabs/tabs.router.module.ts ***!
+  !*** ./src/app/pages/tabs/tabs.router.module.ts ***!
   \**************************************************/
 /*! exports provided: TabsPageRoutingModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {

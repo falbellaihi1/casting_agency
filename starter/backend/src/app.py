@@ -11,7 +11,6 @@ def create_app(test_config=None):  # create src
     app = Flask(__name__)
     setup_db(app)
     # CORS(src)
-    app.secret_key = os.environ.get('SECRET_KEY')
     CORS(app, resources={r"/api/*": {"origins": "*"}})
     create_db()
 

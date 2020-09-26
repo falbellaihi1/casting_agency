@@ -15,6 +15,7 @@ appConnect.use(serveStatic("platforms/browser/www"));
 // API Routes
 // src.get('/blah', routeHandler);
 appConnect.listen(process.env.PORT || 8000);
+console.log('Please note that to test this, sometimes when you are already logged in to auth0, you need to clear cookies so that you are logged out');
 // src.set('port', process.env.PORT || 5000);
 //
 // src.listen(src.get('port'), function () {
