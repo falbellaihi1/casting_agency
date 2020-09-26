@@ -140,8 +140,6 @@ This command will create necessary files for browser
 [Checkout stackoverflow answer to build Ionic for browser (PWA)](https://stackoverflow.com/questions/43701033/ionic-pwa-deploy)
 
 
-*Note do not use ionic serve in production, instead build ionic* [Checkout the Ionic docs to learn more](https://ionicframework.com/docs/cli/commands/build)
-
 
 
 -BASE URL 
@@ -203,9 +201,9 @@ For heroku to deploy ionic frontend it needs to have server.js and to have packa
 ## API usage requirements
 
 To use the API, a user has to be authenticated, to do that
-While flask is running ``flask run ``&& started ionic ``ionic serve`` 
+While flask is running ``flask run ``&& started frontend ``npm start``  
 
-navigate to ```http://127.0.0.1:8100/tabs/user-page``` 
+navigate to ```http://127.0.0.1:8100/tabs/user-page```  or https://casting-agency-falbellaihi.herokuapp.com/ to login and get the bearer
 * click login and use the following information for each role you would like to test
 
 
@@ -237,6 +235,7 @@ navigate to ```http://127.0.0.1:8100/tabs/user-page```
      
 
 
+Once logged in, and to test below functionalities use either local host or https://casting-agency-capstone-udaciy.herokuapp.com/
 
 ### HTTP STATUS CODE SUMMARY AND FORMAT
 - 200 OK
